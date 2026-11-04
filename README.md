@@ -6,6 +6,12 @@ Proyek ini dirancang untuk kebutuhan operasional **24/7 Network Operations Cente
 
 ---
 
+## 📊 Tampilan Dashboard Grafana
+
+![Dashboard NMS DWDM HT6000](dashboard.png)
+
+---
+
 ## 🏗️ Arsitektur Sistem
 
     [DWDM HT6000 Chassis / Simulator: 400G OTU, EDFA, OLP, NMS, FAN]
