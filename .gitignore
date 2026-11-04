@@ -1,0 +1,15 @@
+# Abaikan file environment atau kredensial lokal
+.env
+*.secret
+*.key
+*.pem
+
+# Abaikan backup atau file sementara editor
+*.bak
+*.swp
+*~
+.DS_Store
+
+# Abaikan data runtime lokal jika ada
+prometheus_data/
+grafana_data/

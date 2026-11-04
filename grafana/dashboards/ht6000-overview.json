@@ -1,0 +1,166 @@
+{
+  "annotations": { "list": [] },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "links": [],
+  "panels": [
+    {
+      "title": "CFP2 Line Link (Slot 1)",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 4, "x": 0, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "prometheus-dwdm" },
+      "targets": [{ "expr": "ht6000_otu_cfp2_link_status", "refId": "A" }],
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            { "options": { "0": { "color": "green", "index": 0, "text": "UP (ONLINE)" }, "1": { "color": "red", "index": 1, "text": "DOWN (LOS)" } }, "type": "value" }
+          ],
+          "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "red", "value": 1 }] }
+        }
+      }
+    },
+    {
+      "title": "OSNR 400G Line (dB)",
+      "type": "gauge",
+      "gridPos": { "h": 4, "w": 4, "x": 4, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "prometheus-dwdm" },
+      "targets": [{ "expr": "ht6000_otu_cfp2_osnr_db", "refId": "A" }],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "dB",
+          "min": 0,
+          "max": 40,
+          "thresholds": { "mode": "absolute", "steps": [{ "color": "red", "value": null }, { "color": "yellow", "value": 18 }, { "color": "green", "value": 22 }] }
+        }
+      }
+    },
+    {
+      "title": "OLP Active Route (Slot 3)",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 4, "x": 8, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "prometheus-dwdm" },
+      "targets": [{ "expr": "ht6000_olp_working_link", "refId": "A" }],
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            { "options": { "1": { "color": "green", "index": 0, "text": "PRIMARY (R1)" }, "2": { "color": "orange", "index": 1, "text": "SECONDARY (R2)" } }, "type": "value" }
+          ]
+        }
+      }
+    },
+    {
+      "title": "PSU 1 & PSU 2 Status",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 4, "x": 12, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "prometheus-dwdm" },
+      "targets": [
+        { "expr": "ht6000_nms_power1_status", "legendFormat": "PSU 1", "refId": "A" },
+        { "expr": "ht6000_nms_power2_status", "legendFormat": "PSU 2", "refId": "B" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            { "options": { "0": { "color": "red", "index": 0, "text": "MISSING" }, "1": { "color": "green", "index": 1, "text": "OK" } }, "type": "value" }
+          ]
+        }
+      }
+    },
+    {
+      "title": "NMS Board Temp (°C)",
+      "type": "gauge",
+      "gridPos": { "h": 4, "w": 4, "x": 16, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "prometheus-dwdm" },
+      "targets": [{ "expr": "ht6000_nms_board_temp_celsius", "refId": "A" }],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "celsius",
+          "min": 0,
+          "max": 85,
+          "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "yellow", "value": 55 }, { "color": "red", "value": 70 }] }
+        }
+      }
+    },
+    {
+      "title": "System Uptime",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 4, "x": 20, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "prometheus-dwdm" },
+      "targets": [{ "expr": "ht6000_nms_uptime_seconds", "refId": "A" }],
+      "fieldConfig": { "defaults": { "unit": "s", "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "blue", "value": null }] } } }
+    },
+    {
+      "title": "400G OTU (Slot 1) - Optical Power (CFP2 Line & QSFP28 Client)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 4 },
+      "datasource": { "type": "prometheus", "uid": "prometheus-dwdm" },
+      "targets": [
+        { "expr": "ht6000_otu_cfp2_tx_power_dbm", "legendFormat": "CFP2 Line Tx Power", "refId": "A" },
+        { "expr": "ht6000_otu_cfp2_rx_power_dbm", "legendFormat": "CFP2 Line Rx Power", "refId": "B" },
+        { "expr": "ht6000_otu_qsfp1_t1_power_dbm", "legendFormat": "QSFP28-1 Client Tx1", "refId": "C" },
+        { "expr": "ht6000_otu_qsfp1_r1_power_dbm", "legendFormat": "QSFP28-1 Client Rx1", "refId": "D" }
+      ],
+      "fieldConfig": { "defaults": { "unit": "dBm" } }
+    },
+    {
+      "title": "EDFA Amplifier (Slot 2) - Input / Output Power & Gain",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 4 },
+      "datasource": { "type": "prometheus", "uid": "prometheus-dwdm" },
+      "targets": [
+        { "expr": "ht6000_edfa_in1_power_dbm", "legendFormat": "EDFA In1 Power (dBm)", "refId": "A" },
+        { "expr": "ht6000_edfa_out1_power_dbm", "legendFormat": "EDFA Out1 Power (dBm)", "refId": "B" },
+        { "expr": "ht6000_edfa_in2_power_dbm", "legendFormat": "EDFA In2 Power (dBm)", "refId": "C" },
+        { "expr": "ht6000_edfa_out2_power_dbm", "legendFormat": "EDFA Out2 Power (dBm)", "refId": "D" },
+        { "expr": "ht6000_edfa_gain1_db", "legendFormat": "EDFA Gain 1 (dB)", "refId": "E" }
+      ],
+      "fieldConfig": { "defaults": { "unit": "dBm" } }
+    },
+    {
+      "title": "OLP Optical Line Protection (Slot 3) - R1/R2/RX/TX Power",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 8, "x": 0, "y": 12 },
+      "datasource": { "type": "prometheus", "uid": "prometheus-dwdm" },
+      "targets": [
+        { "expr": "ht6000_olp_r1_power_dbm", "legendFormat": "R1 Primary Rx", "refId": "A" },
+        { "expr": "ht6000_olp_r2_power_dbm", "legendFormat": "R2 Secondary Rx", "refId": "B" },
+        { "expr": "ht6000_olp_rx_power_dbm", "legendFormat": "Common RX", "refId": "C" },
+        { "expr": "ht6000_olp_tx_power_dbm", "legendFormat": "Common TX", "refId": "D" }
+      ],
+      "fieldConfig": { "defaults": { "unit": "dBm" } }
+    },
+    {
+      "title": "400G Line Signal Quality (OSNR, ESNR, CD, DGD)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 8, "x": 8, "y": 12 },
+      "datasource": { "type": "prometheus", "uid": "prometheus-dwdm" },
+      "targets": [
+        { "expr": "ht6000_otu_cfp2_osnr_db", "legendFormat": "OSNR (dB)", "refId": "A" },
+        { "expr": "ht6000_otu_cfp2_esnr_db", "legendFormat": "ESNR (dB)", "refId": "B" },
+        { "expr": "ht6000_otu_cfp2_dispersion_cd_ps_nm", "legendFormat": "Chromatic Dispersion (ps/nm)", "refId": "C" },
+        { "expr": "ht6000_otu_cfp2_dgd_ps", "legendFormat": "DGD (ps)", "refId": "D" }
+      ]
+    },
+    {
+      "title": "Chassis Cooling Fans Speed (Slot 32 - RPM) & Temperatures",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 8, "x": 16, "y": 12 },
+      "datasource": { "type": "prometheus", "uid": "prometheus-dwdm" },
+      "targets": [
+        { "expr": "ht6000_fan1_speed_rpm", "legendFormat": "Fan 1 (RPM)", "refId": "A" },
+        { "expr": "ht6000_fan2_speed_rpm", "legendFormat": "Fan 2 (RPM)", "refId": "B" },
+        { "expr": "ht6000_fan3_speed_rpm", "legendFormat": "Fan 3 (RPM)", "refId": "C" },
+        { "expr": "ht6000_fan4_speed_rpm", "legendFormat": "Fan 4 (RPM)", "refId": "D" }
+      ],
+      "fieldConfig": { "defaults": { "unit": "rotrpm" } }
+    }
+  ],
+  "refresh": "15s",
+  "schemaVersion": 39,
+  "tags": ["DWDM", "HT6000", "Optical", "NOC"],
+  "templating": { "list": [] },
+  "time": { "from": "now-15m", "to": "now" },
+  "title": "NMS DWDM HT6000 - NOC Optical Telemetry",
+  "uid": "ht6000-noc-main",
+  "version": 1
+}

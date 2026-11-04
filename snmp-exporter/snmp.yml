@@ -1,0 +1,273 @@
+auths:
+  public_v2:
+    community: public
+    security_level: noAuthNoPriv
+    auth_protocol: MD5
+    priv_protocol: DES
+    version: 2
+
+modules:
+  ht6000:
+    walk:
+      - 1.3.6.1.4.1.83667.1.1.3.2
+      - 1.3.6.1.4.1.83667.1.1.4.3
+      - 1.3.6.1.4.1.83667.1.1.4.6
+      - 1.3.6.1.4.1.83667.1.1.4.16
+      - 1.3.6.1.4.1.83667.1.1.4.23.32
+    metrics:
+      # ================= NMS CARD =================
+      - name: ht6000_nms_lan1_link
+        oid: 1.3.6.1.4.1.83667.1.1.3.2.4
+        type: gauge
+        help: "Status LAN 1 NMS (0: down, 1: up)"
+      - name: ht6000_nms_sfp1_temp_celsius
+        oid: 1.3.6.1.4.1.83667.1.1.3.2.18
+        type: gauge
+        scale: 0.01
+        help: "Suhu SFP1 NMS dalam Celsius"
+      - name: ht6000_nms_sfp1_rx_power_dbm
+        oid: 1.3.6.1.4.1.83667.1.1.3.2.21
+        type: gauge
+        scale: 0.01
+        help: "Rx Power SFP1 NMS dalam dBm"
+      - name: ht6000_nms_sfp1_tx_power_dbm
+        oid: 1.3.6.1.4.1.83667.1.1.3.2.22
+        type: gauge
+        scale: 0.01
+        help: "Tx Power SFP1 NMS dalam dBm"
+      - name: ht6000_nms_power1_status
+        oid: 1.3.6.1.4.1.83667.1.1.3.2.35
+        type: gauge
+        help: "Power Card 1 Status (0: Not in place, 1: In place)"
+      - name: ht6000_nms_power2_status
+        oid: 1.3.6.1.4.1.83667.1.1.3.2.37
+        type: gauge
+        help: "Power Card 2 Status (0: Not in place, 1: In place)"
+      - name: ht6000_nms_board_temp_celsius
+        oid: 1.3.6.1.4.1.83667.1.1.3.2.60
+        type: gauge
+        scale: 0.01
+        help: "Suhu Board NMS dalam Celsius"
+      - name: ht6000_nms_board_temp_status
+        oid: 1.3.6.1.4.1.83667.1.1.3.2.62
+        type: gauge
+        help: "Status Suhu Board NMS (0: Normal, 1: Warning)"
+      - name: ht6000_nms_uptime_seconds
+        oid: 1.3.6.1.4.1.83667.1.1.3.2.63
+        type: gauge
+        help: "System Uptime dalam detik"
+
+      # ================= FAN CARD (SLOT 32) =================
+      - name: ht6000_fan_total_count
+        oid: 1.3.6.1.4.1.83667.1.1.4.23.32.10
+        type: gauge
+        help: "Total jumlah kipas"
+      - name: ht6000_fan1_status
+        oid: 1.3.6.1.4.1.83667.1.1.4.23.32.11
+        type: gauge
+        help: "Status Fan 1 (0: Normal, 1: Warning)"
+      - name: ht6000_fan2_status
+        oid: 1.3.6.1.4.1.83667.1.1.4.23.32.12
+        type: gauge
+      - name: ht6000_fan3_status
+        oid: 1.3.6.1.4.1.83667.1.1.4.23.32.13
+        type: gauge
+      - name: ht6000_fan4_status
+        oid: 1.3.6.1.4.1.83667.1.1.4.23.32.14
+        type: gauge
+      - name: ht6000_fan1_speed_rpm
+        oid: 1.3.6.1.4.1.83667.1.1.4.23.32.19
+        type: gauge
+        help: "Kecepatan putaran Fan 1 (RPM)"
+      - name: ht6000_fan2_speed_rpm
+        oid: 1.3.6.1.4.1.83667.1.1.4.23.32.20
+        type: gauge
+      - name: ht6000_fan3_speed_rpm
+        oid: 1.3.6.1.4.1.83667.1.1.4.23.32.21
+        type: gauge
+      - name: ht6000_fan4_speed_rpm
+        oid: 1.3.6.1.4.1.83667.1.1.4.23.32.22
+        type: gauge
+      - name: ht6000_fan1_duty_percent
+        oid: 1.3.6.1.4.1.83667.1.1.4.23.32.35
+        type: gauge
+        help: "Duty cycle Fan 1 (0-100%)"
+
+      # ================= 400G OTU (SLOT 1) =================
+      - name: ht6000_otu_die0_temp_celsius
+        oid: 1.3.6.1.4.1.83667.1.1.4.16.1.12
+        type: gauge
+        help: "Suhu Die0 400G OTU (Celsius)"
+      - name: ht6000_otu_die1_temp_celsius
+        oid: 1.3.6.1.4.1.83667.1.1.4.16.1.13
+        type: gauge
+        help: "Suhu Die1 400G OTU (Celsius)"
+      - name: ht6000_otu_qsfp1_online
+        oid: 1.3.6.1.4.1.83667.1.1.4.16.1.25
+        type: gauge
+        help: "QSFP28-1 Presence (0: Not in position, 1: In position)"
+      - name: ht6000_otu_qsfp1_link_status
+        oid: 1.3.6.1.4.1.83667.1.1.4.16.1.26
+        type: gauge
+        help: "QSFP28-1 Link Status (0: UP, 1: DOWN)"
+      - name: ht6000_otu_qsfp1_t1_power_dbm
+        oid: 1.3.6.1.4.1.83667.1.1.4.16.1.28
+        type: gauge
+        scale: 0.01
+        help: "QSFP28-1 Tx1 Power (dBm)"
+      - name: ht6000_otu_qsfp1_r1_power_dbm
+        oid: 1.3.6.1.4.1.83667.1.1.4.16.1.32
+        type: gauge
+        scale: 0.01
+        help: "QSFP28-1 Rx1 Power (dBm)"
+      - name: ht6000_otu_qsfp1_temp_celsius
+        oid: 1.3.6.1.4.1.83667.1.1.4.16.1.45
+        type: gauge
+        scale: 0.01
+        help: "QSFP28-1 Temperature (Celsius)"
+      - name: ht6000_otu_cfp2_online
+        oid: 1.3.6.1.4.1.83667.1.1.4.16.1.77
+        type: gauge
+        help: "CFP2 Line Presence (0: Not in position, 1: In position)"
+      - name: ht6000_otu_cfp2_link_status
+        oid: 1.3.6.1.4.1.83667.1.1.4.16.1.78
+        type: gauge
+        help: "CFP2 Line Link Status (0: UP, 1: DOWN)"
+      - name: ht6000_otu_cfp2_tx_power_dbm
+        oid: 1.3.6.1.4.1.83667.1.1.4.16.1.80
+        type: gauge
+        scale: 0.01
+        help: "CFP2 Line Tx Power (dBm)"
+      - name: ht6000_otu_cfp2_rx_power_dbm
+        oid: 1.3.6.1.4.1.83667.1.1.4.16.1.82
+        type: gauge
+        scale: 0.01
+        help: "CFP2 Line Rx Power (dBm)"
+      - name: ht6000_otu_cfp2_rx_threshold_dbm
+        oid: 1.3.6.1.4.1.83667.1.1.4.16.1.83
+        type: gauge
+        scale: 0.01
+        help: "CFP2 Line Rx Threshold (dBm)"
+      - name: ht6000_otu_cfp2_uncorrected_errors
+        oid: 1.3.6.1.4.1.83667.1.1.4.16.1.88
+        type: gauge
+        help: "CFP2 Uncorrected FEC Errors"
+      - name: ht6000_otu_cfp2_dispersion_cd_ps_nm
+        oid: 1.3.6.1.4.1.83667.1.1.4.16.1.102
+        type: gauge
+        help: "CFP2 Chromatic Dispersion (ps/nm)"
+      - name: ht6000_otu_cfp2_dgd_ps
+        oid: 1.3.6.1.4.1.83667.1.1.4.16.1.103
+        type: gauge
+        help: "CFP2 Differential Group Delay (ps)"
+      - name: ht6000_otu_cfp2_osnr_db
+        oid: 1.3.6.1.4.1.83667.1.1.4.16.1.104
+        type: gauge
+        scale: 0.1
+        help: "CFP2 Optical SNR / OSNR (dB)"
+      - name: ht6000_otu_cfp2_esnr_db
+        oid: 1.3.6.1.4.1.83667.1.1.4.16.1.105
+        type: gauge
+        scale: 0.1
+        help: "CFP2 Electrical SNR / ESNR (dB)"
+      - name: ht6000_otu_cfp2_temp_celsius
+        oid: 1.3.6.1.4.1.83667.1.1.4.16.1.111
+        type: gauge
+        scale: 0.01
+        help: "CFP2 Module Temperature (Celsius)"
+      - name: ht6000_otu_cfp2_voltage_v
+        oid: 1.3.6.1.4.1.83667.1.1.4.16.1.112
+        type: gauge
+        scale: 0.0001
+        help: "CFP2 Supply Voltage (V)"
+
+      # ================= EDFA (SLOT 2) =================
+      - name: ht6000_edfa_in1_power_dbm
+        oid: 1.3.6.1.4.1.83667.1.1.4.6.2.9
+        type: gauge
+        scale: 0.01
+        help: "EDFA In1 Current Power (dBm)"
+      - name: ht6000_edfa_in1_threshold_dbm
+        oid: 1.3.6.1.4.1.83667.1.1.4.6.2.10
+        type: gauge
+        scale: 0.01
+        help: "EDFA In1 Low Power Threshold (dBm)"
+      - name: ht6000_edfa_out1_power_dbm
+        oid: 1.3.6.1.4.1.83667.1.1.4.6.2.16
+        type: gauge
+        scale: 0.01
+        help: "EDFA Out1 Current Power (dBm)"
+      - name: ht6000_edfa_out1_threshold_dbm
+        oid: 1.3.6.1.4.1.83667.1.1.4.6.2.17
+        type: gauge
+        scale: 0.01
+        help: "EDFA Out1 Low Power Threshold (dBm)"
+      - name: ht6000_edfa_in2_power_dbm
+        oid: 1.3.6.1.4.1.83667.1.1.4.6.2.25
+        type: gauge
+        scale: 0.01
+        help: "EDFA In2 Current Power (dBm)"
+      - name: ht6000_edfa_out2_power_dbm
+        oid: 1.3.6.1.4.1.83667.1.1.4.6.2.32
+        type: gauge
+        scale: 0.01
+        help: "EDFA Out2 Current Power (dBm)"
+      - name: ht6000_edfa_gain1_db
+        oid: 1.3.6.1.4.1.83667.1.1.4.6.2.49
+        type: gauge
+        scale: 0.01
+        help: "EDFA Gain 1 (dB)"
+      - name: ht6000_edfa_gain2_db
+        oid: 1.3.6.1.4.1.83667.1.1.4.6.2.56
+        type: gauge
+        scale: 0.01
+        help: "EDFA Gain 2 (dB)"
+      - name: ht6000_edfa_pump_current_ma
+        oid: 1.3.6.1.4.1.83667.1.1.4.6.2.59
+        type: gauge
+        help: "EDFA Pump Laser Current (mA)"
+
+      # ================= OLP (SLOT 3) =================
+      - name: ht6000_olp_r1_power_dbm
+        oid: 1.3.6.1.4.1.83667.1.1.4.3.3.15
+        type: gauge
+        scale: 0.01
+        help: "OLP R1 Primary Rx Power (dBm)"
+      - name: ht6000_olp_r2_power_dbm
+        oid: 1.3.6.1.4.1.83667.1.1.4.3.3.16
+        type: gauge
+        scale: 0.01
+        help: "OLP R2 Secondary Rx Power (dBm)"
+      - name: ht6000_olp_rx_power_dbm
+        oid: 1.3.6.1.4.1.83667.1.1.4.3.3.17
+        type: gauge
+        scale: 0.01
+        help: "OLP Common RX Power (dBm)"
+      - name: ht6000_olp_t1_power_dbm
+        oid: 1.3.6.1.4.1.83667.1.1.4.3.3.18
+        type: gauge
+        scale: 0.01
+        help: "OLP T1 Primary Tx Power (dBm)"
+      - name: ht6000_olp_t2_power_dbm
+        oid: 1.3.6.1.4.1.83667.1.1.4.3.3.19
+        type: gauge
+        scale: 0.01
+        help: "OLP T2 Secondary Tx Power (dBm)"
+      - name: ht6000_olp_tx_power_dbm
+        oid: 1.3.6.1.4.1.83667.1.1.4.3.3.20
+        type: gauge
+        scale: 0.01
+        help: "OLP Common TX Power (dBm)"
+      - name: ht6000_olp_temp_celsius
+        oid: 1.3.6.1.4.1.83667.1.1.4.3.3.27
+        type: gauge
+        scale: 0.01
+        help: "OLP Card Temperature (Celsius)"
+      - name: ht6000_olp_operating_mode
+        oid: 1.3.6.1.4.1.83667.1.1.4.3.3.29
+        type: gauge
+        help: "OLP Operating Mode (0: Manual, 1: Auto)"
+      - name: ht6000_olp_working_link
+        oid: 1.3.6.1.4.1.83667.1.1.4.3.3.33
+        type: gauge
+        help: "OLP Active Working Route (1: Primary/R1, 2: Secondary/R2)"

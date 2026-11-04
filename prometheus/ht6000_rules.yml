@@ -1,0 +1,78 @@
+groups:
+  - name: ht6000_optical_metrics
+    interval: 15s
+    rules:
+      # ==================== 400G OTU METRICS ====================
+      # Suhu Chipset Card (Die0 & Die1 - Skala 1:1)
+      - record: ht6000_otu_card_temp_die0_celsius
+        expr: ht6000_otu400g_raw{sub_oid="12"}
+      - record: ht6000_otu_card_temp_die1_celsius
+        expr: ht6000_otu400g_raw{sub_oid="13"}
+
+      # CFP2 Line Side (Port 3) - Power, OSNR, ESNR, CD, DGD, Temp, Link
+      - record: ht6000_otu_cfp2_link_status
+        expr: ht6000_otu400g_raw{sub_oid="78"} # 0: UP, 1: DOWN
+      - record: ht6000_otu_cfp2_tx_power_dbm
+        expr: ht6000_otu400g_raw{sub_oid="80"} / 100
+      - record: ht6000_otu_cfp2_rx_power_dbm
+        expr: ht6000_otu400g_raw{sub_oid="82"} / 100
+      - record: ht6000_otu_cfp2_rx_threshold_dbm
+        expr: ht6000_otu400g_raw{sub_oid="83"} / 100
+      - record: ht6000_otu_cfp2_dispersion_cd_ps_nm
+        expr: ht6000_otu400g_raw{sub_oid="102"}
+      - record: ht6000_otu_cfp2_dgd_ps
+        expr: ht6000_otu400g_raw{sub_oid="103"}
+      - record: ht6000_otu_cfp2_osnr_db
+        expr: ht6000_otu400g_raw{sub_oid="104"} / 10
+      - record: ht6000_otu_cfp2_esnr_db
+        expr: ht6000_otu400g_raw{sub_oid="105"} / 10
+      - record: ht6000_otu_cfp2_temp_celsius
+        expr: ht6000_otu400g_raw{sub_oid="111"} / 100
+
+      # QSFP28 Client 1 (Sub-OID 25..45)
+      - record: ht6000_otu_qsfp1_link_status
+        expr: ht6000_otu400g_raw{sub_oid="26"} # 0: UP, 1: DOWN
+      - record: ht6000_otu_qsfp1_tx1_power_dbm
+        expr: ht6000_otu400g_raw{sub_oid="28"} / 100
+      - record: ht6000_otu_qsfp1_rx1_power_dbm
+        expr: ht6000_otu400g_raw{sub_oid="32"} / 100
+      - record: ht6000_otu_qsfp1_temp_celsius
+        expr: ht6000_otu400g_raw{sub_oid="45"} / 100
+
+      # ==================== EDFA METRICS ====================
+      - record: ht6000_edfa_in1_power_dbm
+        expr: ht6000_edfa_raw{sub_oid="9"} / 100
+      - record: ht6000_edfa_in1_threshold_dbm
+        expr: ht6000_edfa_raw{sub_oid="10"} / 100
+      - record: ht6000_edfa_out1_power_dbm
+        expr: ht6000_edfa_raw{sub_oid="16"} / 100
+      - record: ht6000_edfa_out1_threshold_dbm
+        expr: ht6000_edfa_raw{sub_oid="17"} / 100
+      - record: ht6000_edfa_in2_power_dbm
+        expr: ht6000_edfa_raw{sub_oid="25"} / 100
+      - record: ht6000_edfa_out2_power_dbm
+        expr: ht6000_edfa_raw{sub_oid="32"} / 100
+      - record: ht6000_edfa_gain1_db
+        expr: ht6000_edfa_raw{sub_oid="49"} / 100
+      - record: ht6000_edfa_gain2_db
+        expr: ht6000_edfa_raw{sub_oid="56"} / 100
+      - record: ht6000_edfa_pump_current_ma
+        expr: ht6000_edfa_raw{sub_oid="59"}
+
+      # ==================== OLP METRICS ====================
+      - record: ht6000_olp_r1_power_dbm
+        expr: ht6000_olp_raw{sub_oid="15"} / 100
+      - record: ht6000_olp_r2_power_dbm
+        expr: ht6000_olp_raw{sub_oid="16"} / 100
+      - record: ht6000_olp_rx_power_dbm
+        expr: ht6000_olp_raw{sub_oid="17"} / 100
+      - record: ht6000_olp_t1_power_dbm
+        expr: ht6000_olp_raw{sub_oid="18"} / 100
+      - record: ht6000_olp_t2_power_dbm
+        expr: ht6000_olp_raw{sub_oid="19"} / 100
+      - record: ht6000_olp_tx_power_dbm
+        expr: ht6000_olp_raw{sub_oid="20"} / 100
+      - record: ht6000_olp_temp_celsius
+        expr: ht6000_olp_raw{sub_oid="27"} / 100
+      - record: ht6000_olp_working_link
+        expr: ht6000_olp_raw{sub_oid="33"}
